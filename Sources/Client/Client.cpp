@@ -568,7 +568,6 @@ namespace spades {
 
 			if (logStream) {
 				logStream->Write(outStr);
-				logStream->Flush();
 			}
 		}
 

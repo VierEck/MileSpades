@@ -441,6 +441,7 @@ namespace spades {
 			// CreateSceneDefinition also can be used for sounds
 			SceneDefinition sceneDef = CreateSceneDefinition();
 			lastSceneDef = sceneDef;
+			UpdateMatrices();
 
 			// Update sounds
 			try {

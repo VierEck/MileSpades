@@ -32,6 +32,7 @@ DEFINE_SPADES_SETTING(cg_keyPaletteLeft, "Left");
 DEFINE_SPADES_SETTING(cg_keyPaletteRight, "Right");
 DEFINE_SPADES_SETTING(cg_keyPaletteUp, "Up");
 DEFINE_SPADES_SETTING(cg_keyPaletteDown, "Down");
+DEFINE_SPADES_SETTING(cg_keyPaletteInvert, "i");
 
 namespace spades {
 	namespace client {
@@ -381,6 +382,20 @@ namespace spades {
 				else
 					c += 16;
 				SetSelectedIndex(c);
+				return true;
+			} else if (EqualsIgnoringCase(keyName, cg_keyPaletteInvert)) {
+				World *w = client->GetWorld();
+				if (!w)
+					return true;
+				Player *p = w->GetLocalPlayer();
+				if (!p)
+					return true;
+				IntVector3 clr = p->GetBlockColor();
+				clr.x = 255 - clr.x;
+				clr.y = 255 - clr.y;
+				clr.z = 255 - clr.z;
+				p->SetHeldBlockColor(clr);
+				client->net->SendHeldBlockColor();
 				return true;
 			} else {
 				return false;

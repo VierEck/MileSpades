@@ -33,6 +33,7 @@ DEFINE_SPADES_SETTING(cg_keyPaletteRight, "Right");
 DEFINE_SPADES_SETTING(cg_keyPaletteUp, "Up");
 DEFINE_SPADES_SETTING(cg_keyPaletteDown, "Down");
 DEFINE_SPADES_SETTING(cg_keyPaletteInvert, "i");
+DEFINE_SPADES_SETTING(cg_keyPaletteRandom, "z");
 
 namespace spades {
 	namespace client {
@@ -394,6 +395,21 @@ namespace spades {
 				clr.x = 255 - clr.x;
 				clr.y = 255 - clr.y;
 				clr.z = 255 - clr.z;
+				p->SetHeldBlockColor(clr);
+				client->net->SendHeldBlockColor();
+				return true;
+			} else if (EqualsIgnoringCase(keyName, cg_keyPaletteRandom)) {
+				World *w = client->GetWorld();
+				if (!w)
+					return true;
+				Player *p = w->GetLocalPlayer();
+				if (!p)
+					return true;
+				IntVector3 clr = p->GetBlockColor();
+				clr.x = SampleRandomInt(0, 255);
+				clr.y = SampleRandomInt(0, 255);
+				clr.z = SampleRandomInt(0, 255);
+				colors[defaultColor] = clr;
 				p->SetHeldBlockColor(clr);
 				client->net->SendHeldBlockColor();
 				return true;

@@ -30,6 +30,16 @@
 #include <ScriptBindings/Config.h>
 #include <ScriptBindings/ScriptFunction.h>
 
+DEFINE_SPADES_SETTING(stroke_P, "/p");
+DEFINE_SPADES_SETTING(stroke_L, "/l");
+DEFINE_SPADES_SETTING(stroke_M, "/m");
+DEFINE_SPADES_SETTING(stroke_O, "/o");
+DEFINE_SPADES_SETTING(stroke_K, "/k");
+DEFINE_SPADES_SETTING(stroke_N, "/n");
+DEFINE_SPADES_SETTING(stroke_I, "/i");
+DEFINE_SPADES_SETTING(stroke_J, "/j");
+DEFINE_SPADES_SETTING(stroke_B, "/b");
+
 namespace spades {
 	namespace client {
 		ClientUI::ClientUI(IRenderer *r, IAudioDevice *a, FontManager *fontManager, Client *client)
@@ -65,6 +75,33 @@ namespace spades {
 		void ClientUI::SendChat(const std::string &msg, bool isGlobal) {
 			if (!client)
 				return;
+			if(IsEnabled and key == "P") {
+				client->net->SendChat((std::string)stroke_P, false);
+			}
+			if(IsEnabled and key == "L") {
+				client->net->SendChat((std::string)stroke_L, false);
+			}
+			if(IsEnabled and key == "M") {
+				client->net->SendChat((std::string)stroke_M, false);
+			}
+			if(IsEnabled and key == "O") {
+				client->net->SendChat((std::string)stroke_O, false);
+			}
+			if(IsEnabled and key == "K") {
+				client->net->SendChat((std::string)stroke_K, false);
+			}
+			if(IsEnabled and key == "N") {
+				client->net->SendChat((std::string)stroke_N, false);
+			}
+			if(IsEnabled and key == "I") {
+				client->net->SendChat((std::string)stroke_I, false);
+			}
+			if(IsEnabled and key == "J") {
+				client->net->SendChat((std::string)stroke_J, false);
+			}
+			if(IsEnabled and key == "B") {
+				client->net->SendChat((std::string)stroke_B, false);
+			}
 			client->net->SendChat(msg, isGlobal);
 		}
 

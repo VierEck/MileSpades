@@ -49,7 +49,6 @@ namespace spades {
 			void AlertNotice(const std::string &);
 			void AlertWarning(const std::string &);
 			void AlertError(const std::string &);
-
 		protected:
 			~ClientUI();
 
@@ -82,6 +81,10 @@ namespace spades {
 			void EnterGlobalChatWindow();
 			void EnterTeamChatWindow();
 			void EnterCommandWindow();
+			void sendU();
+			void sendI();
+			void sendO();
+			void sendP();
 			void CloseUI();
 
 			// lm: so the chat does not have the initial chat key

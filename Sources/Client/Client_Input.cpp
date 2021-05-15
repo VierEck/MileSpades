@@ -87,11 +87,6 @@ DEFINE_SPADES_SETTING(cg_alerts, "1");
 SPADES_SETTING(cg_manualFocus);
 DEFINE_SPADES_SETTING(cg_keyAutoFocus, "MiddleMouseButton");
 
-DEFINE_SPADES_SETTING(stroke_P, "p");
-DEFINE_SPADES_SETTING(stroke_O, "o");
-DEFINE_SPADES_SETTING(stroke_I, "i");
-DEFINE_SPADES_SETTING(stroke_U, "u");
-
 namespace spades {
 	namespace client {
 
@@ -526,19 +521,19 @@ namespace spades {
 						// global chat
 						scriptedUI->EnterGlobalChatWindow();
 						scriptedUI->setIgnored(name);
-					} else if (CheckKey(stroke_U, name) && down) {
+					} else if (CheckKey("u", name) && down) {
 						// send /u command
 						scriptedUI->sendU();
 						scriptedUI->setIgnored(name);
-					} else if (CheckKey(stroke_I, name) && down) {
+					} else if (CheckKey("i", name) && down) {
 						// send /i command
 						scriptedUI->sendI();
 						scriptedUI->setIgnored(name);
-					} else if (CheckKey(stroke_O, name) && down) {
+					} else if (CheckKey("o", name) && down) {
 						// send /o command
 						scriptedUI->sendO();
 						scriptedUI->setIgnored(name);
-					} else if (CheckKey(stroke_P, name) && down) {
+					} else if (CheckKey("p", name) && down) {
 						// send /p command
 						scriptedUI->sendP();
 						scriptedUI->setIgnored(name);

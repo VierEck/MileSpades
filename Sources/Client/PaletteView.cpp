@@ -32,7 +32,7 @@ DEFINE_SPADES_SETTING(cg_keyPaletteLeft, "Left");
 DEFINE_SPADES_SETTING(cg_keyPaletteRight, "Right");
 DEFINE_SPADES_SETTING(cg_keyPaletteUp, "Up");
 DEFINE_SPADES_SETTING(cg_keyPaletteDown, "Down");
-DEFINE_SPADES_SETTING(cg_keyPaletteInvert, "i");
+DEFINE_SPADES_SETTING(cg_keyPaletteInvert, "c");
 DEFINE_SPADES_SETTING(cg_keyPaletteRandom, "z");
 DEFINE_SPADES_SETTING(cg_keyPaletteMix, "x");
 
@@ -49,14 +49,14 @@ namespace spades {
 		}
 
 		PaletteView::PaletteView(Client *client) : client(client), renderer(client->GetRenderer()) {
-			colors.push_back({13, 13, 13});
+			colors.push_back({0, 0, 0});
 			colors.push_back({46, 46, 46});
 			colors.push_back({79, 79, 79});
 			colors.push_back({112, 112, 112});
 			colors.push_back({143, 143, 143});
 			colors.push_back({175, 175, 175});
 			colors.push_back({207, 207, 207});
-			colors.push_back({239, 239, 239});
+			colors.push_back({255, 255, 255});
 			colors.push_back({136, 14, 79});
 			colors.push_back({173, 20, 87});
 			colors.push_back({194, 24, 91});

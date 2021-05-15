@@ -30,6 +30,11 @@
 #include <ScriptBindings/Config.h>
 #include <ScriptBindings/ScriptFunction.h>
 
+DEFINE_SPADES_SETTING(ds_macro_P, "This is a DankSpades macro. Change me with /ds_macro_P [macro]");
+DEFINE_SPADES_SETTING(ds_macro_O, "This is a DankSpades macro. Change me with /ds_macro_O [macro]");
+DEFINE_SPADES_SETTING(ds_macro_I, "This is a DankSpades macro. Change me with /ds_macro_I [macro]");
+DEFINE_SPADES_SETTING(ds_macro_U, "This is a DankSpades macro. Change me with /ds_macro_U [macro]");
+
 namespace spades {
 	namespace client {
 		ClientUI::ClientUI(IRenderer *r, IAudioDevice *a, FontManager *fontManager, Client *client)
@@ -67,25 +72,25 @@ namespace spades {
 				return;
 			client->net->SendChat(msg, isGlobal);
 		}
-				void ClientUI::sendU() {
+		void ClientUI::sendU() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)"/u", false);
+			client->net->SendChat((std::string)ds_macro_U, false);
 		}
 		void ClientUI::sendI() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)"/i", false);
+			client->net->SendChat((std::string)ds_macro_I, false);
 		}
 		void ClientUI::sendO() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)"/o", false);
+			client->net->SendChat((std::string)ds_macro_O, false);
 		}
 		void ClientUI::sendP() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)"/p", false);
+			client->net->SendChat((std::string)ds_macro_P, false);
 		}
 		void ClientUI::AlertNotice(const std::string &msg) {
 			if (!client)

@@ -13,23 +13,23 @@
 
 std::string VersionInfo::GetVersionInfo() {
 #if defined(OS_PLATFORM_LINUX)
-	return std::string("Linux");
+	return std::string("Linux | DankSpades: github.com/yusufcardinal/openspades");
 #elif defined(TARGET_OS_MAC)
-	return std::string("Mac OS X");
+	return std::string("Mac OS X | DankSpades: github.com/yusufcardinal/openspades");
 #elif defined(OS_PLATFORM_WINDOWS)
 	
 	std::string windowsVersion;
 
 	if (IsWindowsXPOrGreater() && !IsWindowsVistaOrGreater()) {
-		windowsVersion = "Windows XP";
+		windowsVersion = "Windows XP | DankSpades: github.com/yusufcardinal/openspades";
 	} else if (IsWindowsVistaOrGreater() && !IsWindows7OrGreater()) {
-		windowsVersion = "Windows Vista";
+		windowsVersion = "Windows Vista | DankSpades: github.com/yusufcardinal/openspades";
 	} else if (IsWindows7OrGreater() && !IsWindows8OrGreater()) {
-		windowsVersion = "Windows 7";
+		windowsVersion = "Windows 7 | DankSpades: github.com/yusufcardinal/openspades";
 	} else if (IsWindows8OrGreater() && !IsWindows8Point1OrGreater()) {
-		windowsVersion = "Windows 8";
+		windowsVersion = "Windows 10 | DankSpades: github.com/yusufcardinal/openspades";
 	} else if (IsWindows8Point1OrGreater()) {
-		windowsVersion = "Windows 8.1";
+		windowsVersion = "Windows 8.1 | DankSpades: github.com/yusufcardinal/openspades";
 	} else {
 		// Default to Windows 10
 		// See https://github.com/yvt/openspades/pull/528 for reason.
@@ -43,10 +43,10 @@ std::string VersionInfo::GetVersionInfo() {
 		windowsVersion += " Server";
 	return windowsVersion;
 #elif defined(__FreeBSD__)
-	return std::string("FreeBSD");
+	return std::string("FreeBSD | DankSpades: github.com/yusufcardinal/openspades");
 #elif defined(__OpenBSD__)
-	return std::string("OpenBSD");
+	return std::string("OpenBSD | DankSpades: github.com/yusufcardinal/openspades");
 #else
-	return std::string("Unknown OS");
+	return std::string("Unknown OS | DankSpades: github.com/yusufcardinal/openspades");
 #endif
 }

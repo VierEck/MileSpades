@@ -663,7 +663,7 @@ namespace spades {
 			layouter.AddHeading(_Tr("Preferences", "Misc"));
 			layouter.AddSliderField(_Tr("Preferences", "Field of View"), "cg_fov", 45, 90, 1,
 				ConfigNumberFormatter(0, " deg"));
-			layouter.AddSliderField(_Tr("Preferences", "Minimap size"), "cg_minimapSize", 128, 256, 8,
+			layouter.AddSliderField(_Tr("Preferences", "Minimap size"), "ds_minimapSize", 128, 256, 8,
 				ConfigNumberFormatter(0, " px"));
 			layouter.AddToggleField(_Tr("Preferences", "Show Statistics"), "cg_stats");
 			layouter.FinishLayout();
@@ -679,11 +679,11 @@ namespace spades {
 			layouter.AddControl(_Tr("Preferences", "Attack"), "cg_keyAttack");
 			layouter.AddControl(_Tr("Preferences", "Alt. Attack"), "cg_keyAltAttack");
 			layouter.AddToggleField(_Tr("Preferences", "Hold Aim Down Sight"), "cg_holdAimDownSight");
-			layouter.AddSliderField(_Tr("Preferences", "Mouse Sensitivity"), "cg_mouseSensitivity", 0.1, 10, 0.1,
+			layouter.AddSliderField(_Tr("Preferences", "Mouse Sensitivity"), "ds_mouseSensitivity", 0.1, 10, 0.1,
 				ConfigNumberFormatter(1, "x"));
 			layouter.AddSliderField(_Tr("Preferences", "ADS Mouse Sens. Scale"), "cg_zoomedMouseSensScale", 0.05, 3, 0.05,
 				ConfigNumberFormatter(2, "x"));
-			layouter.AddSliderField(_Tr("Preferences", "Exponential Power"), "cg_mouseExpPower", 0.5, 1.5, 0.02,
+			layouter.AddSliderField(_Tr("Preferences", "Exponential Power"), "ds_mouseExpPower", 0.5, 1.5, 0.02,
 				ConfigNumberFormatter(2, "", "^"));
 			layouter.AddToggleField(_Tr("Preferences", "Invert Y-axis Mouse Input"), "cg_invertMouseY");
 			layouter.AddControl(_Tr("Preferences", "Reload"), "cg_keyReloadWeapon");
@@ -715,6 +715,28 @@ namespace spades {
 			layouter.AddControl(_Tr("Preferences", "Save Map"), "cg_keySaveMap");
 			layouter.AddControl(_Tr("Preferences", "Save Sceneshot"), "cg_keySceneshot");
 			layouter.AddControl(_Tr("Preferences", "Save Screenshot"), "cg_keyScreenshot");
+			
+			layouter.AddHeading(_Tr("Preferences", "Macros"));
+			layouter.AddControl(_Tr("Preferences", "Macro 1"), "ds_macrobind_1");
+			layouter.AddInputField(_Tr("Preferences", "Macro 1 text"), "ds_macro_1");
+			layouter.AddControl(_Tr("Preferences", "Macro 2"), "ds_macrobind_2");
+			layouter.AddInputField(_Tr("Preferences", "Macro 2 text"), "ds_macro_2");
+			layouter.AddControl(_Tr("Preferences", "Macro 3"), "ds_macrobind_3");
+			layouter.AddInputField(_Tr("Preferences", "Macro 3 text"), "ds_macro_3");
+			layouter.AddControl(_Tr("Preferences", "Macro 4"), "ds_macrobind_4");
+			layouter.AddInputField(_Tr("Preferences", "Macro 4 text"), "ds_macro_4");
+			layouter.AddControl(_Tr("Preferences", "Macro 5"), "ds_macrobind_5");
+			layouter.AddInputField(_Tr("Preferences", "Macro 5 text"), "ds_macro_5");
+			layouter.AddControl(_Tr("Preferences", "Macro 6"), "ds_macrobind_6");
+			layouter.AddInputField(_Tr("Preferences", "Macro 6 text"), "ds_macro_6");
+			layouter.AddControl(_Tr("Preferences", "Macro 7"), "ds_macrobind_7");
+			layouter.AddInputField(_Tr("Preferences", "Macro 7 text"), "ds_macro_7");
+			layouter.AddControl(_Tr("Preferences", "Macro 8"), "ds_macrobind_8");
+			layouter.AddInputField(_Tr("Preferences", "Macro 8 text"), "ds_macro_8");
+			layouter.AddControl(_Tr("Preferences", "Macro 9"), "ds_macrobind_9");
+			layouter.AddInputField(_Tr("Preferences", "Macro 9 text"), "ds_macro_9");
+			layouter.AddControl(_Tr("Preferences", "Macro 10"), "ds_macrobind_10");
+			layouter.AddInputField(_Tr("Preferences", "Macro 10 text"), "ds_macro_10");
 
 			layouter.FinishLayout();
 		}

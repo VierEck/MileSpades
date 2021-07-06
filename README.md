@@ -13,7 +13,7 @@ OpenSpades is a compatible client of Ace of Spades 0.75.
 * Open source, and cross platform.
 
 ## What's in ur fork??
-It features Doctor Dank's changes, along with Liza's color palette (with minor changes). U, I, O and P are chat macros to run commands (such as /m, /apoc, /emote, "ggwp"). They can be changed in-game with /ds_macro_U "your macro here".
+It features Doctor Dank's changes, along with Liza's color palette (with minor changes), and customizeable macros.
 
 ## How to Build/Install?
 **Before you start:** In case you're having issues to build OpenSpades, it may be because this README file is outdated, if so:

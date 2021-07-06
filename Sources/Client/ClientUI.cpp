@@ -30,10 +30,16 @@
 #include <ScriptBindings/Config.h>
 #include <ScriptBindings/ScriptFunction.h>
 
-DEFINE_SPADES_SETTING(ds_macro_P, "This is a DankSpades macro. Change me with /ds_macro_P [macro]");
-DEFINE_SPADES_SETTING(ds_macro_O, "This is a DankSpades macro. Change me with /ds_macro_O [macro]");
-DEFINE_SPADES_SETTING(ds_macro_I, "This is a DankSpades macro. Change me with /ds_macro_I [macro]");
-DEFINE_SPADES_SETTING(ds_macro_U, "This is a DankSpades macro. Change me with /ds_macro_U [macro]");
+DEFINE_SPADES_SETTING(ds_macro_1, "Change me with /ds_macro_1 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_2, "Change me with /ds_macro_2 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_3, "Change me with /ds_macro_3 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_4, "Change me with /ds_macro_4 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_5, "Change me with /ds_macro_5 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_6, "Change me with /ds_macro_6 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_7, "Change me with /ds_macro_7 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_8, "Change me with /ds_macro_8 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_9, "Change me with /ds_macro_9 [macro]");
+DEFINE_SPADES_SETTING(ds_macro_10, "Change me with /ds_macro_10 [macro]");
 
 namespace spades {
 	namespace client {
@@ -72,25 +78,55 @@ namespace spades {
 				return;
 			client->net->SendChat(msg, isGlobal);
 		}
-		void ClientUI::sendU() {
+		void ClientUI::send1() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)ds_macro_U, false);
+			client->net->SendChat((std::string)ds_macro_1, true);
 		}
-		void ClientUI::sendI() {
+		void ClientUI::send2() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)ds_macro_I, false);
+			client->net->SendChat((std::string)ds_macro_2, true);
 		}
-		void ClientUI::sendO() {
+		void ClientUI::send3() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)ds_macro_O, false);
+			client->net->SendChat((std::string)ds_macro_3, true);
 		}
-		void ClientUI::sendP() {
+		void ClientUI::send4() {
 			if (!client)
 				return;
-			client->net->SendChat((std::string)ds_macro_P, false);
+			client->net->SendChat((std::string)ds_macro_4, true);
+		}
+		void ClientUI::send5() {
+			if (!client)
+				return;
+			client->net->SendChat((std::string)ds_macro_5, true);
+		}
+		void ClientUI::send6() {
+			if (!client)
+				return;
+			client->net->SendChat((std::string)ds_macro_6, true);
+		}
+		void ClientUI::send7() {
+			if (!client)
+				return;
+			client->net->SendChat((std::string)ds_macro_7, true);
+		}
+		void ClientUI::send8() {
+			if (!client)
+				return;
+			client->net->SendChat((std::string)ds_macro_8, true);
+		}
+		void ClientUI::send9() {
+			if (!client)
+				return;
+			client->net->SendChat((std::string)ds_macro_9, true);
+		}
+		void ClientUI::send10() {
+			if (!client)
+				return;
+			client->net->SendChat((std::string)ds_macro_10, true);
 		}
 		void ClientUI::AlertNotice(const std::string &msg) {
 			if (!client)

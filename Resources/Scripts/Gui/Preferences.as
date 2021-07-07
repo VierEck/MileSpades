@@ -717,25 +717,25 @@ namespace spades {
 			layouter.AddControl(_Tr("Preferences", "Save Screenshot"), "cg_keyScreenshot");
 			
 			layouter.AddHeading(_Tr("Preferences", "Macros"));
-			layouter.AddControl(_Tr("Preferences", "Macro 1"), "ds_macrobind_1");
+			layouter.AddControl(_Tr("Preferences", "Macro 1"), "ds_macrobind1");
 			layouter.AddInputField(_Tr("Preferences", "Macro 1 text"), "ds_macro_1");
-			layouter.AddControl(_Tr("Preferences", "Macro 2"), "ds_macrobind_2");
+			layouter.AddControl(_Tr("Preferences", "Macro 2"), "ds_macrobind2");
 			layouter.AddInputField(_Tr("Preferences", "Macro 2 text"), "ds_macro_2");
-			layouter.AddControl(_Tr("Preferences", "Macro 3"), "ds_macrobind_3");
+			layouter.AddControl(_Tr("Preferences", "Macro 3"), "ds_macrobind3");
 			layouter.AddInputField(_Tr("Preferences", "Macro 3 text"), "ds_macro_3");
-			layouter.AddControl(_Tr("Preferences", "Macro 4"), "ds_macrobind_4");
+			layouter.AddControl(_Tr("Preferences", "Macro 4"), "ds_macrobind4");
 			layouter.AddInputField(_Tr("Preferences", "Macro 4 text"), "ds_macro_4");
-			layouter.AddControl(_Tr("Preferences", "Macro 5"), "ds_macrobind_5");
+			layouter.AddControl(_Tr("Preferences", "Macro 5"), "ds_macrobind5");
 			layouter.AddInputField(_Tr("Preferences", "Macro 5 text"), "ds_macro_5");
-			layouter.AddControl(_Tr("Preferences", "Macro 6"), "ds_macrobind_6");
+			layouter.AddControl(_Tr("Preferences", "Macro 6"), "ds_macrobind6");
 			layouter.AddInputField(_Tr("Preferences", "Macro 6 text"), "ds_macro_6");
-			layouter.AddControl(_Tr("Preferences", "Macro 7"), "ds_macrobind_7");
+			layouter.AddControl(_Tr("Preferences", "Macro 7"), "ds_macrobind7");
 			layouter.AddInputField(_Tr("Preferences", "Macro 7 text"), "ds_macro_7");
-			layouter.AddControl(_Tr("Preferences", "Macro 8"), "ds_macrobind_8");
+			layouter.AddControl(_Tr("Preferences", "Macro 8"), "ds_macrobind8");
 			layouter.AddInputField(_Tr("Preferences", "Macro 8 text"), "ds_macro_8");
-			layouter.AddControl(_Tr("Preferences", "Macro 9"), "ds_macrobind_9");
+			layouter.AddControl(_Tr("Preferences", "Macro 9"), "ds_macrobind9");
 			layouter.AddInputField(_Tr("Preferences", "Macro 9 text"), "ds_macro_9");
-			layouter.AddControl(_Tr("Preferences", "Macro 10"), "ds_macrobind_10");
+			layouter.AddControl(_Tr("Preferences", "Macro 10"), "ds_macrobind10");
 			layouter.AddInputField(_Tr("Preferences", "Macro 10 text"), "ds_macro_10");
 
 			layouter.FinishLayout();

@@ -46,19 +46,22 @@ namespace spades {
 
 			{
 				spades::ui::Label label(Manager);
-				label.BackgroundColor = Vector4(0, 0, 0, 0.4f);
+				label.BackgroundColor = Vector4(0.2, 0.1, 0.3, 0.4f);
 				label.Bounds = Bounds;
 				AddChild(label);
 			}
 			{
 				spades::ui::Label label(Manager);
-				label.BackgroundColor = Vector4(0, 0, 0, 0.8f);
+				label.BackgroundColor = Vector4(0.2, 0.1, 0.3, 0.8f);
 				label.Bounds = AABB2(0.f, ContentsTop - 13.f, Size.x, ContentsHeight + 27.f);
 				AddChild(label);
 			}
 
 			AddTab(GameOptionsPanel(Manager, options, fontManager), _Tr("Preferences", "Game Options"));
 			AddTab(ControlOptionsPanel(Manager, options, fontManager), _Tr("Preferences", "Controls"));
+			AddTab(DankPanel(Manager, options, fontManager), _Tr("Preferences", "Dank\'s"));
+			AddTab(LizaPanel(Manager, options, fontManager), _Tr("Preferences", "Liza\'s"));
+			AddTab(MilePanel(Manager, options, fontManager), _Tr("Preferences", "Mile\'s"));
 			AddTab(MiscOptionsPanel(Manager, options, fontManager), _Tr("Preferences", "Misc"));
 
 			{
@@ -129,12 +132,12 @@ namespace spades {
 			Renderer@ r = Manager.Renderer;
 			Image@ img = r.RegisterImage("Gfx/White.tga");
 
-			r.ColorNP = Vector4(1, 1, 1, 0.08f);
+			r.ColorNP = Vector4(0, 0.5, 1, 0.1f);
 			r.DrawImage(img,
 				AABB2(pos.x, pos.y + ContentsTop - 15.f, size.x, 1.f));
 			r.DrawImage(img,
 				AABB2(pos.x, pos.y + ContentsTop + ContentsHeight + 15.f, size.x, 1.f));
-			r.ColorNP = Vector4(1, 1, 1, 0.2f);
+			r.ColorNP = Vector4(0, 0.5, 1, 0.4f);
 			r.DrawImage(img,
 				AABB2(pos.x, pos.y + ContentsTop - 14.f, size.x, 1.f));
 			r.DrawImage(img,
@@ -388,7 +391,7 @@ namespace spades {
 			Vector2 pos = ScreenPosition;
 			Vector2 size = Size;
 			Image@ img = renderer.RegisterImage("Gfx/White.tga");
-			renderer.ColorNP = Vector4(0.f, 0.f, 0.f, IsFocused ? 0.3f : 0.1f);
+			renderer.ColorNP = Vector4(1.f, 0.2f, 0.7f, IsFocused ? 0.3f : 0.1f);
 			renderer.DrawImage(img, AABB2(pos.x, pos.y, size.x, size.y));
 
 			if(IsFocused) {
@@ -409,7 +412,7 @@ namespace spades {
 			Vector4 color(1,1,1,1);
 
 			if(IsFocused) {
-				color.w = abs(sin(Manager.Time * 2.f));
+				color.w = abs(sin(Manager.Time * 10.f));
 			}else{
 				AcceptsFocus = false;
 			}
@@ -531,6 +534,16 @@ namespace spades {
 			label.Text = text;
 			label.Alignment = Vector2(0.f, 1.f);
 			@label.Font = fontManager.HeadingFont;
+			label.Bounds = AABB2(10.f, 0.f, 300.f, 32.f);
+			container.AddChild(label);
+		}
+
+		void AddParag(string caption) {
+			spades::ui::UIElement@ container = CreateItem();
+
+			spades::ui::Label label(Parent.Manager);
+			label.Text = caption;
+			label.Alignment = Vector2(0.f, 0.f);
 			label.Bounds = AABB2(10.f, 0.f, 300.f, 32.f);
 			container.AddChild(label);
 		}
@@ -663,7 +676,7 @@ namespace spades {
 			layouter.AddHeading(_Tr("Preferences", "Misc"));
 			layouter.AddSliderField(_Tr("Preferences", "Field of View"), "cg_fov", 45, 90, 1,
 				ConfigNumberFormatter(0, " deg"));
-			layouter.AddSliderField(_Tr("Preferences", "Minimap size"), "ds_minimapSize", 128, 256, 8,
+			layouter.AddSliderField(_Tr("Preferences", "Minimap size"), "cg_minimapSize", 128, 512, 8,
 				ConfigNumberFormatter(0, " px"));
 			layouter.AddToggleField(_Tr("Preferences", "Show Statistics"), "cg_stats");
 			layouter.FinishLayout();
@@ -679,11 +692,11 @@ namespace spades {
 			layouter.AddControl(_Tr("Preferences", "Attack"), "cg_keyAttack");
 			layouter.AddControl(_Tr("Preferences", "Alt. Attack"), "cg_keyAltAttack");
 			layouter.AddToggleField(_Tr("Preferences", "Hold Aim Down Sight"), "cg_holdAimDownSight");
-			layouter.AddSliderField(_Tr("Preferences", "Mouse Sensitivity"), "ds_mouseSensitivity", 0.1, 10, 0.1,
+			layouter.AddSliderField(_Tr("Preferences", "Mouse Sensitivity"), "cg_mouseSensitivity", 0.1, 10, 0.1,
 				ConfigNumberFormatter(1, "x"));
 			layouter.AddSliderField(_Tr("Preferences", "ADS Mouse Sens. Scale"), "cg_zoomedMouseSensScale", 0.05, 3, 0.05,
 				ConfigNumberFormatter(2, "x"));
-			layouter.AddSliderField(_Tr("Preferences", "Exponential Power"), "ds_mouseExpPower", 0.5, 1.5, 0.02,
+			layouter.AddSliderField(_Tr("Preferences", "Exponential Power"), "cg_mouseExpPower", 0.5, 1.5, 0.02,
 				ConfigNumberFormatter(2, "", "^"));
 			layouter.AddToggleField(_Tr("Preferences", "Invert Y-axis Mouse Input"), "cg_invertMouseY");
 			layouter.AddControl(_Tr("Preferences", "Reload"), "cg_keyReloadWeapon");
@@ -715,33 +728,75 @@ namespace spades {
 			layouter.AddControl(_Tr("Preferences", "Save Map"), "cg_keySaveMap");
 			layouter.AddControl(_Tr("Preferences", "Save Sceneshot"), "cg_keySceneshot");
 			layouter.AddControl(_Tr("Preferences", "Save Screenshot"), "cg_keyScreenshot");
-			
-			layouter.AddHeading(_Tr("Preferences", "Macros"));
-			layouter.AddControl(_Tr("Preferences", "Macro 1"), "ds_macrobind1");
-			layouter.AddInputField(_Tr("Preferences", "Macro 1 text"), "ds_macro_1");
-			layouter.AddControl(_Tr("Preferences", "Macro 2"), "ds_macrobind2");
-			layouter.AddInputField(_Tr("Preferences", "Macro 2 text"), "ds_macro_2");
-			layouter.AddControl(_Tr("Preferences", "Macro 3"), "ds_macrobind3");
-			layouter.AddInputField(_Tr("Preferences", "Macro 3 text"), "ds_macro_3");
-			layouter.AddControl(_Tr("Preferences", "Macro 4"), "ds_macrobind4");
-			layouter.AddInputField(_Tr("Preferences", "Macro 4 text"), "ds_macro_4");
-			layouter.AddControl(_Tr("Preferences", "Macro 5"), "ds_macrobind5");
-			layouter.AddInputField(_Tr("Preferences", "Macro 5 text"), "ds_macro_5");
-			layouter.AddControl(_Tr("Preferences", "Macro 6"), "ds_macrobind6");
-			layouter.AddInputField(_Tr("Preferences", "Macro 6 text"), "ds_macro_6");
-			layouter.AddControl(_Tr("Preferences", "Macro 7"), "ds_macrobind7");
-			layouter.AddInputField(_Tr("Preferences", "Macro 7 text"), "ds_macro_7");
-			layouter.AddControl(_Tr("Preferences", "Macro 8"), "ds_macrobind8");
-			layouter.AddInputField(_Tr("Preferences", "Macro 8 text"), "ds_macro_8");
-			layouter.AddControl(_Tr("Preferences", "Macro 9"), "ds_macrobind9");
-			layouter.AddInputField(_Tr("Preferences", "Macro 9 text"), "ds_macro_9");
-			layouter.AddControl(_Tr("Preferences", "Macro 10"), "ds_macrobind10");
-			layouter.AddInputField(_Tr("Preferences", "Macro 10 text"), "ds_macro_10");
 
 			layouter.FinishLayout();
 		}
 	}
+	
+	class DankPanel: spades::ui::UIElement {
+			DankPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+				super(manager);
 
+				StandardPreferenceLayouter layouter(this, fontManager);
+				layouter.AddHeading(_Tr("Preferences", "OpenGL Effects"));														// ADDED
+				layouter.AddToggleField(_Tr("Preferences", "Outlines"), "cg_outlines");											// ADDED
+				layouter.AddSliderField(_Tr("Preferences", "Outline Strength"), "cg_outlineStrength", 1, 10, 1, 					// ADDED
+					ConfigNumberFormatter(0, "px"));																			// ADDED
+				layouter.AddToggleField(_Tr("Preferences", "Textures"), "cg_textures");											// ADDED
+				layouter.AddToggleField(_Tr("Preferences", "Multi-Texture Mode"), "cg_multiTextures");							// ADDED
+				layouter.AddSliderField(_Tr("Preferences", "Texture Strength"), "cg_textureStrength", -100, 100, 1, 				// ADDED
+					ConfigNumberFormatter(0, "%"));																				// ADDED
+
+				layouter.AddHeading(_Tr("Preferences", "Spectator Tools"));														// ADDED
+				layouter.AddToggleField(_Tr("Preferences", "Spectator Player Names"), "dd_specNames");							// ADDED
+				layouter.AddToggleField(_Tr("Preferences", "Spectator Wallhack"), "dd_specWallhack");							// ADDED
+				layouter.FinishLayout();
+			}
+		}
+		
+	class LizaPanel: spades::ui::UIElement {
+			LizaPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+				super(manager);
+
+				StandardPreferenceLayouter layouter(this, fontManager);
+				layouter.AddHeading(_Tr("Preferences", "Extra Palette Settings"));
+				layouter.AddControl(_Tr("Preferences", "Invert Color"), "cg_keyPaletteInvert");
+				layouter.AddControl(_Tr("Preferences", "Random Color"), "cg_keyPaletteRandom");
+				layouter.AddControl(_Tr("Preferences", "Mix Capture Color"), "cg_keyPaletteMix");
+				layouter.FinishLayout();
+			}
+		}
+
+	class MilePanel: spades::ui::UIElement {
+			MilePanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+				super(manager);
+
+				StandardPreferenceLayouter layouter(this, fontManager);
+				layouter.AddHeading(_Tr("Preferences", "Macros"));
+				layouter.AddParag(_Tr("Preferences", "Tip: You can also change the macros in-game with /ds_macro_# [macro]"));
+				layouter.AddControl(_Tr("Preferences", "Macro 1"), "ds_macrobind1");
+				layouter.AddInputField(_Tr("Preferences", "Macro 1 text"), "ds_macro_1");
+				layouter.AddControl(_Tr("Preferences", "Macro 2"), "ds_macrobind2");
+				layouter.AddInputField(_Tr("Preferences", "Macro 2 text"), "ds_macro_2");
+				layouter.AddControl(_Tr("Preferences", "Macro 3"), "ds_macrobind3");
+				layouter.AddInputField(_Tr("Preferences", "Macro 3 text"), "ds_macro_3");
+				layouter.AddControl(_Tr("Preferences", "Macro 4"), "ds_macrobind4");
+				layouter.AddInputField(_Tr("Preferences", "Macro 4 text"), "ds_macro_4");
+				layouter.AddControl(_Tr("Preferences", "Macro 5"), "ds_macrobind5");
+				layouter.AddInputField(_Tr("Preferences", "Macro 5 text"), "ds_macro_5");
+				layouter.AddControl(_Tr("Preferences", "Macro 6"), "ds_macrobind6");
+				layouter.AddInputField(_Tr("Preferences", "Macro 6 text"), "ds_macro_6");
+				layouter.AddControl(_Tr("Preferences", "Macro 7"), "ds_macrobind7");
+				layouter.AddInputField(_Tr("Preferences", "Macro 7 text"), "ds_macro_7");
+				layouter.AddControl(_Tr("Preferences", "Macro 8"), "ds_macrobind8");
+				layouter.AddInputField(_Tr("Preferences", "Macro 8 text"), "ds_macro_8");
+				layouter.AddControl(_Tr("Preferences", "Macro 9"), "ds_macrobind9");
+				layouter.AddInputField(_Tr("Preferences", "Macro 9 text"), "ds_macro_9");
+				layouter.AddControl(_Tr("Preferences", "Macro 10"), "ds_macrobind10");
+				layouter.AddInputField(_Tr("Preferences", "Macro 10 text"), "ds_macro_10");
+				layouter.FinishLayout();
+			}
+		}
 
 	class MiscOptionsPanel: spades::ui::UIElement {
 		spades::ui::Label@ msgLabel;

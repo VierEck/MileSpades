@@ -30,7 +30,8 @@ DankSpades credits
 -------
 "Doctor Dank" - Original client edits (Graphical Effects/PUBOvl/Misc)
 "Liza" - Color palette mods
-"Mile" - Macros/Glow blocks
+"Mile" - Macros
+"MuffinTastic" - Glow blocks
 
 And many others which weren't mentioned here.
 

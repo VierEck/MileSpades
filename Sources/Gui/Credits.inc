@@ -26,6 +26,12 @@ Credits
 "BrunoDiazU" - Spanish translation
 "teodor6140" - Headshot feedback "whack" sound
 
+DankSpades credits
+-------
+"Doctor Dank" - Original client edits (Graphical Effects/PUBOvl/Misc)
+"Liza" - Color palette mods
+"Mile" - Macros/Glow blocks
+
 And many others which weren't mentioned here.
 
 

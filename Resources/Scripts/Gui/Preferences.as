@@ -59,9 +59,11 @@ namespace spades {
 
 			AddTab(GameOptionsPanel(Manager, options, fontManager), _Tr("Preferences", "Game Options"));
 			AddTab(ControlOptionsPanel(Manager, options, fontManager), _Tr("Preferences", "Controls"));
-			AddTab(DankPanel(Manager, options, fontManager), _Tr("Preferences", "Dank\'s"));
-			AddTab(LizaPanel(Manager, options, fontManager), _Tr("Preferences", "Liza\'s"));
-			AddTab(MilePanel(Manager, options, fontManager), _Tr("Preferences", "Mile\'s"));
+			AddTab(GraphicsPanel(Manager, options, fontManager), _Tr("Preferences", "Extra Graphicss"));
+			AddTab(MinimapPanel(Manager, options, fontManager), _Tr("Preferences", "Minimap"));
+			AddTab(PalettePanel(Manager, options, fontManager), _Tr("Preferences", "Palette"));
+			AddTab(MacroPanel(Manager, options, fontManager), _Tr("Preferences", "Macros"));
+			AddTab(TargetPanel(Manager, options, fontManager), _Tr("Preferences", "Target"));
 			AddTab(MiscOptionsPanel(Manager, options, fontManager), _Tr("Preferences", "Misc"));
 
 			{
@@ -676,7 +678,7 @@ namespace spades {
 			layouter.AddHeading(_Tr("Preferences", "Misc"));
 			layouter.AddSliderField(_Tr("Preferences", "Field of View"), "cg_fov", 45, 90, 1,
 				ConfigNumberFormatter(0, " deg"));
-			layouter.AddSliderField(_Tr("Preferences", "Minimap size"), "cg_minimapSize", 128, 512, 8,
+			layouter.AddSliderField(_Tr("Preferences", "Minimap size"), "cg_minimapSize", 8, 512, 8,
 				ConfigNumberFormatter(0, " px"));
 			layouter.AddToggleField(_Tr("Preferences", "Show Statistics"), "cg_stats");
 			layouter.FinishLayout();
@@ -719,7 +721,9 @@ namespace spades {
 			layouter.AddControl(_Tr("Preferences", "Sprint"), "cg_keySprint");
 
 			layouter.AddHeading(_Tr("Preferences", "Misc"));
-			layouter.AddControl(_Tr("Preferences", "Minimap Scale"), "cg_keyChangeMapScale");
+			layouter.AddSliderField(_Tr("Preferences", "Game volume"), "s_volume", 0, 100, 1, 				// ADDED
+					ConfigNumberFormatter(0, "%"));	
+			layouter.AddControl(_Tr("Preferences", "Minimap Scale 1"), "cg_keyChangeMapScale");
 			layouter.AddControl(_Tr("Preferences", "Toggle Map"), "cg_keyToggleMapZoom");
 			layouter.AddControl(_Tr("Preferences", "Flashlight"), "cg_keyFlashlight");
 			layouter.AddControl(_Tr("Preferences", "Global Chat"), "cg_keyGlobalChat");
@@ -733,11 +737,12 @@ namespace spades {
 		}
 	}
 	
-	class DankPanel: spades::ui::UIElement {
-			DankPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+	class GraphicsPanel: spades::ui::UIElement {
+			GraphicsPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
 				super(manager);
 
 				StandardPreferenceLayouter layouter(this, fontManager);
+				layouter.AddParag(_Tr("Preferences", "Original DankSpades settings, by Doctor Dank."));
 				layouter.AddHeading(_Tr("Preferences", "OpenGL Effects"));														// ADDED
 				layouter.AddToggleField(_Tr("Preferences", "Outlines"), "cg_outlines");											// ADDED
 				layouter.AddSliderField(_Tr("Preferences", "Outline Strength"), "cg_outlineStrength", 1, 10, 1, 					// ADDED
@@ -750,25 +755,46 @@ namespace spades {
 				layouter.AddHeading(_Tr("Preferences", "Spectator Tools"));														// ADDED
 				layouter.AddToggleField(_Tr("Preferences", "Spectator Player Names"), "dd_specNames");							// ADDED
 				layouter.AddToggleField(_Tr("Preferences", "Spectator Wallhack"), "dd_specWallhack");							// ADDED
+				layouter.AddParag(_Tr("Preferences", "TIP: Glow blocks' custom shading is poorly implemented for now."));
+				layouter.AddParag(_Tr("Preferences", "Turn \"Textures\" ON and \"Texture Strength\" at ZERO to disable it."));
+				layouter.AddParag(_Tr("Preferences", "We are aware of how ratchet this is."));
 				layouter.FinishLayout();
 			}
 		}
 		
-	class LizaPanel: spades::ui::UIElement {
-			LizaPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+	class MinimapPanel: spades::ui::UIElement {
+			MinimapPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
 				super(manager);
 
 				StandardPreferenceLayouter layouter(this, fontManager);
+				layouter.AddHeading(_Tr("Preferences", "Minimap Settings"));
+				layouter.AddToggleField(_Tr("Preferences", "Alternate Minimap"), "ds_minimap");	
+				layouter.AddParag(_Tr("Preferences", "Experimental feature. Toggle Map key makes minimap grow."));
+				layouter.AddSliderField(_Tr("Preferences", "Small minimap size"), "ds_mapSizeSmall", 32, 512, 8, 				// ADDED
+					ConfigNumberFormatter(0, "px"));
+				layouter.AddSliderField(_Tr("Preferences", "Big minimap size"), "ds_mapSizeBig", 256, 1024, 8, 				// ADDED
+					ConfigNumberFormatter(0, "px"));
+				layouter.FinishLayout();
+			}
+		}
+		
+	class PalettePanel: spades::ui::UIElement {
+			PalettePanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+				super(manager);
+
+				StandardPreferenceLayouter layouter(this, fontManager);
+				layouter.AddParag(_Tr("Preferences", "Extra settings for Liza's color palette."));
 				layouter.AddHeading(_Tr("Preferences", "Extra Palette Settings"));
 				layouter.AddControl(_Tr("Preferences", "Invert Color"), "cg_keyPaletteInvert");
 				layouter.AddControl(_Tr("Preferences", "Random Color"), "cg_keyPaletteRandom");
 				layouter.AddControl(_Tr("Preferences", "Mix Capture Color"), "cg_keyPaletteMix");
+				layouter.AddParag(_Tr("Preferences", "Mixes blocks held and looked at."));
 				layouter.FinishLayout();
 			}
 		}
 
-	class MilePanel: spades::ui::UIElement {
-			MilePanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+	class MacroPanel: spades::ui::UIElement {
+			MacroPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
 				super(manager);
 
 				StandardPreferenceLayouter layouter(this, fontManager);
@@ -797,6 +823,36 @@ namespace spades {
 				layouter.FinishLayout();
 			}
 		}
+		
+	class TargetPanel: spades::ui::UIElement {
+		TargetPanel(spades::ui::UIManager@ manager, PreferenceViewOptions@ options, FontManager@ fontManager) {
+			super(manager);
+
+	StandardPreferenceLayouter layouter(this, fontManager);
+			layouter.AddParag(_Tr("Preferences", "Courtesy of Nuceto."));
+			layouter.AddHeading(_Tr("Preferences", "Target Options"));
+	layouter.AddToggleField(_Tr("Preferences", "Target"), "n_Target");	
+    layouter.AddSliderField(_Tr("Preferences", "Size"), "n_TargetSize", 0.005, 2, 0.005,
+				ConfigNumberFormatter(1, "x"));
+	layouter.AddHeading(_Tr("Preferences", "Outline"));
+    layouter.AddToggleField(_Tr("Preferences", "Target Outline"), "n_TargetOutline");		
+	layouter.AddSliderField(_Tr("Preferences", "Red"), "n_TargetOutlineColor1", 0.1, 1., 0.1,
+				ConfigNumberFormatter(1, "x"));
+	layouter.AddSliderField(_Tr("Preferences", "Green"), "n_TargetOutlineColor2", 0.1, 1., 0.1,
+				ConfigNumberFormatter(1, "x"));
+	layouter.AddSliderField(_Tr("Preferences", "Blue"), "n_TargetOutlineColor3", 0.1, 1., 0.1,
+				ConfigNumberFormatter(1, "x"));
+
+	layouter.AddHeading(_Tr("Preferences", "Center Color"));			
+	layouter.AddSliderField(_Tr("Preferences", "Red"), "n_TargetColor1", 0.1, 1., 0.1,
+				ConfigNumberFormatter(1, "x"));
+	layouter.AddSliderField(_Tr("Preferences", "Green"), "n_TargetColor2", 0.1, 1., 0.1,
+				ConfigNumberFormatter(1, "x"));
+	layouter.AddSliderField(_Tr("Preferences", "Blue"), "n_TargetColor3", 0.1, 1., 0.1,
+				ConfigNumberFormatter(1, "x"));
+    layouter.FinishLayout();
+	 }
+	}
 
 	class MiscOptionsPanel: spades::ui::UIElement {
 		spades::ui::Label@ msgLabel;

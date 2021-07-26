@@ -5,6 +5,10 @@
 
 [Official website](https://openspades.yvt.jp) — [Download](https://github.com/yvt/openspades/releases) — [Community](https://buildandshoot.com) — [Trello board](https://trello.com/b/3rfpvODj/openspades-roadmap)
 
+DANKSPADES, DIRECT DOWNLOAD (windows): http://192.99.151.117/aos/.index.php?b=dankspades
+
+OTHER OS PLEASE COMPILE AND SEND ME A VERSION LOL
+
 ## What is it?
 OpenSpades is a compatible client of Ace of Spades 0.75.
 
@@ -12,7 +16,7 @@ OpenSpades is a compatible client of Ace of Spades 0.75.
 * Uses OpenGL/AL for better experience.
 * Open source, and cross platform.
 
-## What's in ur fork??
+## What's in your fork?
 It features Doctor Dank's changes, along with Liza's color palette (with minor changes), and customizeable macros.
 
 ## How to Build/Install?

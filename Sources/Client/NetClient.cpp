@@ -825,7 +825,7 @@ namespace spades {
 						int idx = i;
 						if (protocolVersion == 4) {
 							idx = reader.ReadByte();
-							if (idx < 0 || idx >= properties->GetMaxNumPlayerSlots()) {
+							if (idx < 0 /*|| idx >= properties->GetMaxNumPlayerSlots()*/) { //vier removed: max player limit warning
 								SPRaise("Invalid player number %d received with WorldUpdate", idx);
 							}
 						}
@@ -1069,8 +1069,8 @@ namespace spades {
 					pos.z = reader.ReadFloat() - 2.f;
 					std::string name = reader.ReadRemainingString();
 					// TODO: decode name?
-
-					if (pId < 0 || pId >= properties->GetMaxNumPlayerSlots()) {
+					
+					if (pId < 0 /*|| pId >= properties->GetMaxNumPlayerSlots()*/) { //vier removed: max player limit
 						SPLog("Ignoring invalid player number %d (bug in pyspades?: %s)", pId,
 						      name.c_str());
 						break;

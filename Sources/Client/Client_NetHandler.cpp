@@ -66,6 +66,8 @@ namespace spades {
 			followCameraState.enabled = false;
 			freeCameraState.position = MakeVector3(256, 256, 30);
 			freeCameraState.velocity = MakeVector3(0, 0, 0);
+
+			followedPlayerId = world->GetLocalPlayerIndex(); //vier added: prepare spectator mode. define followID
 		}
 
 		void Client::PlayerCreatedBlock(spades::client::Player *p) {
@@ -242,6 +244,10 @@ namespace spades {
 					// Turn off the follow cam mode
 					followCameraState.enabled = false;
 				}
+			}
+
+			if (p->GetId() == followedPlayerId) { //vier added: reset followID if previous followed player left
+					followedPlayerId = world->GetLocalPlayerIndex();
 			}
 
 			{

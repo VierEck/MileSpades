@@ -368,11 +368,15 @@ namespace spades {
 							}
 							return;
 						} else if (CheckKey(cg_keyReloadWeapon, name) &&
-						           world->GetLocalPlayer()->IsSpectator() &&
-						           followCameraState.enabled) {
+						           world->GetLocalPlayer()->IsSpectator() /*&&
+						           followCameraState.enabled*/) { // vier removed: make reload a toggle button for follow state
 							if (down) {
-								// Unfollow
-								followCameraState.enabled = false;
+								if (!followCameraState.enabled && followedPlayerId == world->GetLocalPlayerIndex()) { //vier added: if previous followed player left follow next. 
+									FollowNextPlayer(false);
+									return;
+								}
+								// Unfollow //and follow :)
+								followCameraState.enabled = /*false*/ !followCameraState.enabled; //vier changed: make reload a toggle button for follow state
 							}
 							return;
 						}

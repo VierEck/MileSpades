@@ -112,7 +112,7 @@ namespace spades {
 			std::unique_ptr<GameMapWrapper> mapWrapper;
 			Handle<IRenderer> renderer;
 			Handle<IAudioDevice> audioDevice;
-			float time;
+			//float time;
 			bool readyToClose;
 			float worldSubFrame;
 
@@ -479,6 +479,8 @@ namespace spades {
 			static bool WallhackActive();
 			static spades::Vector3 TeamCol(unsigned int teamId);
 			// END OF ADDED
+
+			float time;
 		};
 	}
 }

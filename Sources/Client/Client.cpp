@@ -77,6 +77,8 @@ DEFINE_SPADES_SETTING(cg_outlineStrength, "2");
 DEFINE_SPADES_SETTING(s_volume, "100");
 // END OF ADDED
 
+SPADES_SETTING(cg_DemoRecord);
+
 namespace spades {
 	namespace client {
 
@@ -388,6 +390,7 @@ namespace spades {
 					fn2 += '_';
 				}
 			}
+			std::string demo = "Demos/" + fn2 + ".demo"; //openspades only uses time and url for filelog name :c
 			fn2 = "NetLogs/" + fn2 + ".log";
 
 			try {
@@ -396,6 +399,9 @@ namespace spades {
 			} catch (const std::exception &ex) {
 				SPLog("Failed to open netlog file '%s' (%s)", fn2.c_str(), ex.what());
 			}
+
+			if (cg_DemoRecord)
+				net->DemoStartRecord(demo);
 		}
 
 		void Client::RunFrame(float dt) {

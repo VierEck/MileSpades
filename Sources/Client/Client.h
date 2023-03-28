@@ -112,7 +112,7 @@ namespace spades {
 			std::unique_ptr<GameMapWrapper> mapWrapper;
 			Handle<IRenderer> renderer;
 			Handle<IAudioDevice> audioDevice;
-			//float time;
+			float time;
 			bool readyToClose;
 			float worldSubFrame;
 
@@ -396,7 +396,7 @@ namespace spades {
 			~Client();
 
 		public:
-			Client(IRenderer *, IAudioDevice *, const ServerAddress &host, FontManager *);
+			Client(IRenderer *, IAudioDevice *, const ServerAddress &host, FontManager *, bool replay, std::string demo_name);
 
 			void RunFrame(float dt) override;
 
@@ -480,7 +480,10 @@ namespace spades {
 			static spades::Vector3 TeamCol(unsigned int teamId);
 			// END OF ADDED
 
-			float time;
+			float GetTimeGlobal() { return time; }
+
+			bool Replaying;
+			std::string demo_file;
 		};
 	}
 }

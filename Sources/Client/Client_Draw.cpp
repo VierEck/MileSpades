@@ -972,6 +972,21 @@ namespace spades {
 			r->DrawImage(nullptr, AABB2(pos.x, pos.y, size.x, size.y));
 			font->DrawShadow(str, pos + Vector2(margin, margin), 1.f, Vector4(1.f, 1.f, 1.f, 1.f),
 			                 Vector4(0.f, 0.f, 0.f, 0.5f));
+
+			if (Replaying) {
+				int currenttime = net->GetDemoTimer();
+				int hour = (int)currenttime / 3600;
+				int min  = ((int)currenttime % 3600) / 60;
+				int sec  = (int)currenttime % 60;
+				sprintf(buf, "Demo: %02d:%02d:%02d / ", hour, min, sec);
+				str = buf + net->demo_end_time;
+				auto tsize = font->Measure(str);
+				tsize += Vector2(margin * 2.f, margin * 2.f);
+				auto tpos = (Vector2(scrWidth, scrHeight) - tsize) * Vector2(0.5f, 0.95f);
+				r->SetColorAlphaPremultiplied(Vector4(0.f, 0.f, 0.f, 0.5f));
+				r->DrawImage(nullptr, AABB2(tpos.x, tpos.y, tsize.x, tsize.y));
+				font->DrawShadow(str, tpos + Vector2(margin, margin), 1.f, Vector4(1.f, 1.f, 1.f, 1.f), Vector4(0.f, 0.f, 0.f, 0.5f));
+			}
 		}
 
 		void Client::Draw2D() {

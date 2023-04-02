@@ -125,7 +125,7 @@ namespace spades {
 			Player *p = world->GetLocalPlayer();
 			if (!p)
 				return;
-			if (!p->IsAlive())
+			if (!p->IsAlive() || p->IsSpectator())
 				return;
 
 			IntVector3 outBlockCoord;
@@ -193,15 +193,17 @@ namespace spades {
 			// physics diverges from server
 			world->Advance(dt);
 #else
-			// accurately resembles server's physics
-			// but not smooth
-			if (dt > 0.f)
-				worldSubFrame += dt;
+			if (!Replaying || (Replaying && (net->demo_pause_time == 0 || net->demo_skip_time != 0))) {
+				// accurately resembles server's physics
+				// but not smooth
+				if (dt > 0.f)
+					worldSubFrame += dt;
 
-			float frameStep = 1.f / 60.f;
-			while (worldSubFrame >= frameStep) {
-				world->Advance(frameStep);
-				worldSubFrame -= frameStep;
+				float frameStep = 1.f / 60.f;
+				while (worldSubFrame >= frameStep) {
+					world->Advance(frameStep * DemoSpeedMultiplier);
+					worldSubFrame -= frameStep;
+				}
 			}
 #endif
 

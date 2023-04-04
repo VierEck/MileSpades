@@ -2234,9 +2234,10 @@ namespace spades {
 			if (ups == 0 || ups == -1) {
 				return;
 			}
-			demo_next_ups = ups;
+			demo_skip_time = demo_next_ups = ups;
 			DemoCommandUnpause(false);
 			CurrentDemo.start_time -= demo_next_ups * 10;
+			demo_skip_end_time = CurrentDemo.start_time + CurrentDemo.delta_time;
 			PrevUps = false;
 			DemoFollowState.first = client->GetFollowedPlayerId();
 			DemoFollowState.second = client->GetFollowMode();
@@ -2247,11 +2248,10 @@ namespace spades {
 				if (ups == 0 || ups == -1) {
 					return;
 				}
-				demo_next_ups = demo_count_ups - ups;
+				demo_skip_time = demo_next_ups = demo_count_ups - ups;
 				DemoCommandUnpause(false);
-				CurrentDemo.start_time = client->GetTimeGlobal() * client->DemoSpeedMultiplier - CurrentDemo.delta_time;
+				demo_skip_end_time = CurrentDemo.start_time + CurrentDemo.delta_time;
 				CurrentDemo.delta_time = demo_count_ups = 0;
-				demo_skip_time = 1;
 				PrevUps = true;
 				DemoFollowState.first = client->GetFollowedPlayerId();
 				DemoFollowState.second = client->GetFollowMode();
